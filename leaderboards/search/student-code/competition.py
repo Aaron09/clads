@@ -14,7 +14,9 @@ class TestRanker(unittest.TestCase):
         # Cranfield
         '/data/cranfield/config.toml',
         # APNews
-        '/data/apnews/config.toml'
+        '/data/apnews/config.toml',
+        # FacultyDataset
+        '/data/FacultyDataset/config.toml'
     ]
     submission_url = 'http://10.0.0.10/api'
     top_k = 10

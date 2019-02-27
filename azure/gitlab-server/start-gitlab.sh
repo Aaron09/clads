@@ -9,4 +9,7 @@ sudo docker run --detach \
     --volume /srv/gitlab/config:/etc/gitlab \
     --volume /srv/gitlab/logs:/var/log/gitlab \
     --volume /srv/gitlab/data:/var/opt/gitlab \
+    --log-driver json-file \
+    --log-opt max-size=10m \
+    --log-opt max-file=3 \
     gitlab/gitlab-ce:latest
