@@ -20,7 +20,7 @@ weight = 0.3
 [[datasets]]
 name = "FacultyDataset"
 config = "/data/FacultyDataset/config.toml"
-top-k = 10
-num-queries = 272
+top-k = 20
+num-queries = 111
 query-id-start = 0
 weight = 0.7
