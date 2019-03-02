@@ -10,20 +10,12 @@ gitlab-url = "https://lab.textdata.org"
 mongodb-host = "mongo"
 
 [[datasets]]
-name = "cranfield"
-config = "/data/cranfield/config.toml"
-top-k = 10
-num-queries = 225
-query-id-start = 1
-weight = 0.2
-
-[[datasets]]
 name = "apnews"
 config = "/data/apnews/config.toml"
 top-k = 10
 num-queries = 100
 query-id-start = 0
-weight = 0.6
+weight = 0.3
 
 [[datasets]]
 name = "FacultyDataset"
@@ -31,4 +23,4 @@ config = "/data/FacultyDataset/config.toml"
 top-k = 10
 num-queries = 272
 query-id-start = 0
-weight = 0.2
+weight = 0.7
