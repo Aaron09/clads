@@ -11,27 +11,35 @@ from search_eval import load_ranker
 
 class TestRanker(unittest.TestCase):
     cfgs = [
-        # Cranfield
-        '/data/cranfield/config.toml',
-        # APNews
-        '/data/apnews/config.toml',
-        # FacultyDataset
-        '/data/FacultyDataset/config.toml'
+        {
+            # Cranfield
+            "top_k": 10
+            "cfg": '/data/cranfield/config.toml',
+        },
+        {
+            # APNews
+            "top_k": 10,
+            "cfg": '/data/apnews/config.toml',
+        },
+        {
+            # FacultyDataset
+            "top_k": 20,
+            "cfg": '/data/FacultyDataset/config.toml'
+        }
     ]
     submission_url = 'http://10.0.0.10/api'
-    top_k = 10
 
     def test_creation(self):
         for cfg_file in self.cfgs:
-            ranker = load_ranker(cfg_file)
+            ranker = load_ranker(cfg_file["cfg"])
 
     def test_load_index(self):
         for cfg_file in self.cfgs:
-            idx = metapy.index.make_inverted_index(cfg_file)
+            idx = metapy.index.make_inverted_index(cfg_file["cfg"])
 
     def get_results(self, cfg_file, query_path):
-        ranker = load_ranker(cfg_file)
-        idx = metapy.index.make_inverted_index(cfg_file)
+        ranker = load_ranker(cfg_file["cfg"])
+        idx = metapy.index.make_inverted_index(cfg_file["cfg"])
         query = metapy.index.Document()
 
         results = []
@@ -40,7 +48,7 @@ class TestRanker(unittest.TestCase):
 
         for line in tqdm(queries):
             query.content(line.strip())
-            results.append(ranker.score(idx, query, self.top_k))
+            results.append(ranker.score(idx, query, cfg_file["top_k"]))
         return results
 
     def test_upload_submission(self):
@@ -58,7 +66,7 @@ class TestRanker(unittest.TestCase):
 
         for cfg_file in self.cfgs:
             res = {'error': None}
-            with open(cfg_file, 'r') as fin:
+            with open(cfg_file["cfg"], 'r') as fin:
                 cfg_d = pytoml.load(fin)
             res['dataset'] = cfg_d['dataset']
             print("\nRunning on {}...".format(res['dataset']))
