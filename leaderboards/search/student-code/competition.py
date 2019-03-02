@@ -11,6 +11,8 @@ from search_eval import load_ranker
 
 class TestRanker(unittest.TestCase):
     cfgs = [
+        # Cranfield
+        '/data/cranfield/config.toml',
         # APNews
         '/data/apnews/config.toml',
         # FacultyDataset
