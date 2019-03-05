@@ -29,6 +29,6 @@ weight = 0.1
 name = "FacultyDataset"
 config = "/data/FacultyDataset/config.toml"
 top-k = 10
-num-queries = 111
+num-queries = 36
 query-id-start = 0
 weight = 0.6
